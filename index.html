@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <title>Winter Arc</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,25 +13,39 @@
   <nav id="sideMenu" class="side-menu" aria-hidden="true">
     <button id="closeMenu" class="close-btn" aria-label="Close navigation menu">×</button>
     <ul role="menubar">
-      <li role="none"><a role="menuitem" href="#hero">Home</a></li>
-      <li role="none"><a role="menuitem" href="#features">About</a></li>
-      <li role="none"><a role="menuitem" href="#socials">Socials</a></li>
+      <li role="none">
+        <a role="menuitem" href="#hero">Home</a>
+        <p>Back to the top of the page</p>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="#features">About</a>
+        <p>Learn more about Winter Arc</p>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="#socials">Socials</a>
+        <p>Connect with us on social media</p>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="https://github.com/winterarc/app">Source</a>
+        <p>View the app on GitHub</p>
+      </li>
     </ul>
+    <div class="menu-buttons">
+      <a class="btn" href="#" data-en="iOS" data-uk="iOS">
+        <svg viewBox="0 0 24 24"><path d="M17.6 18.1c-.8 1.2-1.6 2.3-3 2.3s-1.9-.7-3.2-.7-1.9.7-3.1.7-2.1-1.1-3-2.3c-1.7-2.5-3-7.1-.9-10.2 1.1-1.7 2.9-2.6 4.8-2.6 1.5 0 2.5.8 3.2.8s1.9-.9 3.3-.8c1.5 0 2.9.8 4 2.2-3.5 2-2.9 7.2.9 8.9z"/></svg>
+        <span>iOS</span>
+      </a>
+      <a class="btn" href="#" data-en="Android" data-uk="Android">
+        <svg viewBox="0 0 24 24"><path d="M17.6 12.2c-.4-3.3 2.7-5 2.7-5-1.5-2.2-4-2.2-4-2.2-3.2-.3-4.6 2.1-4.6 2.1-1.6-2.1-4-2.1-4-2.1s-2.6 0-4.1 2.2c0 0 3.1 1.6 2.7 5-1.7 1.3-2.6 3.1-2.6 3.1 1.6.5 3.1 0 3.1 0 .7 2.6 2.7 3.3 2.7 3.3.4-1.4-.2-2.9-.2-2.9 0 0 1.2.8 3 .8s3-.8 3-.8-.6 1.5-.2 2.9c0 0 2-.7 2.7-3.3 0 0 1.6.5 3.1 0 0 0-.9-1.8-2.6-3.1z"/></svg>
+        <span>Android</span>
+      </a>
+    </div>
   </nav>
   <section class="hero" id="hero">
+    <h1 data-en="Winter Arc" data-uk="Winter Arc">Winter Arc</h1>
     <div class="container">
-      <h1 data-en="Winter Arc" data-uk="Winter Arc">Winter Arc</h1>
       <div id="countdown">Loading...</div>
-      <div class="buttons">
-        <a class="btn" href="#" data-en="iOS" data-uk="iOS">
-          <svg viewBox="0 0 24 24"><path d="M17.6 18.1c-.8 1.2-1.6 2.3-3 2.3s-1.9-.7-3.2-.7-1.9.7-3.1.7-2.1-1.1-3-2.3c-1.7-2.5-3-7.1-.9-10.2 1.1-1.7 2.9-2.6 4.8-2.6 1.5 0 2.5.8 3.2.8s1.9-.9 3.3-.8c1.5 0 2.9.8 4 2.2-3.5 2-2.9 7.2.9 8.9z"/></svg>
-          iOS
-        </a>
-        <a class="btn" href="#" data-en="Android" data-uk="Android">
-          <svg viewBox="0 0 24 24"><path d="M17.6 12.2c-.4-3.3 2.7-5 2.7-5-1.5-2.2-4-2.2-4-2.2-3.2-.3-4.6 2.1-4.6 2.1-1.6-2.1-4-2.1-4-2.1s-2.6 0-4.1 2.2c0 0 3.1 1.6 2.7 5-1.7 1.3-2.6 3.1-2.6 3.1 1.6.5 3.1 0 3.1 0 .7 2.6 2.7 3.3 2.7 3.3.4-1.4-.2-2.9-.2-2.9 0 0 1.2.8 3 .8s3-.8 3-.8-.6 1.5-.2 2.9c0 0 2-.7 2.7-3.3 0 0 1.6.5 3.1 0 0 0-.9-1.8-2.6-3.1z"/></svg>
-          Android
-        </a>
-      </div>
+      <p id="hurry" data-en="Hurry up and join!" data-uk="Успей успеть і приєднатися!">Hurry up and join!</p>
     </div>
     <div class="down-anchor">
       <button id="scrollDown" class="down-btn" aria-label="Scroll down">

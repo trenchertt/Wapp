@@ -39,17 +39,21 @@ if (window.innerWidth > 768) {
     cur = (cur + 1) % themes.length;
     root.style.setProperty('--accent', themes[cur].accent);
     root.style.setProperty('--accent2', themes[cur].accent2);
-  }, 12000); // Increased to 12s for less frequent updates
+  }, 12000);
 }
 
 // Language switch
 const setLang = lang => {
   document.querySelectorAll(`[data-${lang}]`).forEach(el => {
-    if (['H1', 'H2', 'A'].includes(el.tagName)) el.textContent = el.dataset[lang];
+    el.textContent = el.dataset[lang];
   });
   document.querySelectorAll('.feature').forEach(el => {
     el.querySelector('h3').textContent = el.dataset[`${lang}Title`];
     el.querySelector('p').textContent = el.dataset[`${lang}Text`];
+  });
+  document.querySelectorAll('.btn').forEach(el => {
+    const span = el.querySelector('span');
+    if (span) span.textContent = el.dataset[lang];
   });
 };
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -70,7 +74,7 @@ menuBtn.onclick = () => {
   sideMenu.classList.add('open');
   sideMenu.setAttribute('aria-hidden', 'false');
   menuBtn.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden'; // Prevent body scroll
+  document.body.style.overflow = 'hidden';
 };
 closeMenuBtn.onclick = () => {
   sideMenu.classList.remove('open');
@@ -89,7 +93,7 @@ sideMenu.querySelectorAll('li').forEach((li, index) => li.style.setProperty('--i
 // Fade-in animations
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => e.isIntersecting && e.target.classList.add('show'));
-}, { threshold: .3 }); // Increased threshold for less frequent triggers
+}, { threshold: .3 });
 document.querySelectorAll('.feature').forEach(el => observer.observe(el));
 
 // Footer year
