@@ -139,7 +139,7 @@ h1 {
   bottom: 2rem; /* Added margin-bottom for visibility */
   left: 0;
   right: 0;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 1.5rem;
 }
 
 .btn {
