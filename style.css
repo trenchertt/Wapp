@@ -96,6 +96,18 @@ body::after { background: var(--accent2); bottom: -60px; right: -60px; animation
   margin: 0 auto;
 }
 
+.countdown-container {
+  display: block;
+  text-align: center;
+  color: inherit;        /* чтобы текст не перекрашивался */
+  text-decoration: none; /* убрать подчёркивание */
+  cursor: pointer;
+}
+
+.countdown-container:hover {
+  opacity: 0.85; /* лёгкий эффект при наведении */
+}
+
 h1 {
   font-size: 3rem;
   margin: 0 0 2rem;
