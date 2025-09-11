@@ -453,19 +453,20 @@ footer {
   align-items: center;
   gap: 0.5rem;
   background: #111;
-  color: #fff;
+  color: var(--accent); /* ← заменили белый на переменную цвета */
   fill: currentColor;
   padding: 0.75rem 1.25rem;
   border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  transition: background 0.25s, transform 0.25s;
+  transition: background 0.25s, transform 0.25s, color 1.5s ease; /* добавили плавный переход цвета */
 }
 
 .pre-reg-btn:hover {
   background: #222;
   transform: translateY(-2px);
+  color: var(--accent2); /* можно поменять на второй цвет при наведении */
 }
 
 .pre-reg-btn svg {
@@ -474,4 +475,5 @@ footer {
   stroke: currentColor;
   stroke-width: 2;
   fill: currentColor;
+  transition: fill 1.5s ease; /* чтобы и иконка меняла цвет вместе с текстом */
 }
