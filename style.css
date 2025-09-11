@@ -139,7 +139,34 @@ h1 {
   bottom: 2rem; /* Added margin-bottom for visibility */
   left: 0;
   right: 0;
-  padding: 0 1.5rem 1.5rem;
+  padding: 0 1.5rem 3rem;
+}
+
+.menu-buttons .btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* текст по центру */
+  width: 120px;
+  height: 44px;
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.menu-buttons .btn svg {
+  position: absolute;
+  left: 12px;       /* иконка фиксирована слева */
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.menu-buttons .btn span {
+  position: relative; /* текст остаётся в потоке и центрируется */
 }
 
 .btn {
