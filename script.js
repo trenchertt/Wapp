@@ -64,18 +64,27 @@ setLang('en');
 // Scroll and menu
 document.getElementById('scrollDown').onclick = () => document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
 const sideMenu = document.getElementById('sideMenu');
-document.getElementById('menuBtn').onclick = () => {
+const menuBtn = document.getElementById('menuBtn');
+const closeMenuBtn = document.getElementById('closeMenu');
+menuBtn.onclick = () => {
   sideMenu.classList.add('open');
-  document.body.style.overflowX = 'hidden';
+  sideMenu.setAttribute('aria-hidden', 'false');
+  menuBtn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden'; // Prevent body scroll
 };
-document.getElementById('closeMenu').onclick = () => {
+closeMenuBtn.onclick = () => {
   sideMenu.classList.remove('open');
-  document.body.style.overflowX = '';
+  sideMenu.setAttribute('aria-hidden', 'true');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
 };
 sideMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
   sideMenu.classList.remove('open');
-  document.body.style.overflowX = '';
+  sideMenu.setAttribute('aria-hidden', 'true');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
 }));
+sideMenu.querySelectorAll('li').forEach((li, index) => li.style.setProperty('--index', index));
 
 // Fade-in animations
 const observer = new IntersectionObserver(entries => {
