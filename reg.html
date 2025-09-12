@@ -4,142 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wapp — Coming Soon</title>
-  <style>
-    :root {
-      --bg-1: #0f1720;
-      --bg-2: #08121a;
-      --accent: #7c5cff;
-      --muted: #9aa4b2;
-      --success: #2ecc71;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #e6eef8;
-      background: linear-gradient(-45deg, var(--bg-1), var(--bg-2), #1b2a3a, #0f1720);
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      width: 100%;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 28px;
-      align-items: stretch; /* контейнеры растягиваются одинаково */
-    }
-    @media (max-width: 880px) {
-      .container { grid-template-columns: 1fr; gap: 20px; }
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.55);
-      min-height: 100%; /* выравнивание высоты */
-    }
-
-    .hero { margin-top: 20px; }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .logo-mark {
-      width: 52px; height: 52px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #4fd1c5);
-      display: grid; place-items: center;
-      font-weight: 700; color: #061022;
-      font-size: 18px;
-      box-shadow: 0 6px 20px rgba(124, 92, 255, 0.18);
-    }
-    h1 { font-size: 28px; margin-bottom: 8px; }
-    p.lead { color: var(--muted); margin-bottom: 16px; }
-
-    .features {
-      display: flex; gap: 10px; flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .feature {
-      background: rgba(255,255,255,0.04);
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    form { display: flex; flex-direction: column; gap: 12px; }
-    label { font-size: 13px; color: var(--muted); }
-    input, select, textarea {
-      width: 100%; padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.02);
-      color: inherit; font-size: 14px;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-      outline: none;
-    }
-    textarea { resize: none; } /* фикс бага с растягиванием */
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
-
-    .submit {
-      background: linear-gradient(90deg, var(--accent), #4fd1c5);
-      color: #061022;
-      padding: 11px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .submit:hover { transform: translateY(-2px); }
-    .success { color: var(--success); margin-top: 8px; font-size: 14px; }
-
-    footer {
-      text-align: center;
-      padding: 12px;
-      margin-top: auto;
-      color: var(--muted);
-    }
-    .lang-switch {
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-    .lang-btn {
-      background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .lang-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #061022;
-    }
-  </style>
+  <link rel="stylesheet" href="reg.css" />
 </head>
 <body>
   <main class="container">
@@ -147,14 +12,15 @@
       <div class="logo">
         <div class="logo-mark">W</div>
         <div>
-          <div style="font-weight:700">Wapp</div>
-          <div style="font-size:12px;color:var(--muted)">Launching soon</div>
+          <div class="logo-title">Wapp</div>
+          <div class="logo-sub">Launching soon</div>
         </div>
       </div>
       <h1 data-en="Get early access to Wapp" data-uk="Отримайте ранній доступ до Wapp">
         Get early access to Wapp
       </h1>
-      <p class="lead" data-en="A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch."
+      <p class="lead"
+         data-en="A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch."
          data-uk="Невеликий і зручний додаток, щоб спростити ваш щоденний робочий процес. Зареєструйтеся зараз, і ми повідомимо вас про запуск.">
          A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch.
       </p>
@@ -166,21 +32,21 @@
     </section>
 
     <aside class="card">
-      <form id="prereg">
+      <form id="prereg" action="https://formspree.io/f/xovnbdav" method="POST">
         <label for="name" data-en="Full name" data-uk="Повне ім'я">Full name</label>
-        <input id="name" type="text" required placeholder="Jane Doe" />
+        <input id="name" name="name" type="text" required placeholder="Jane Doe" />
 
         <label for="email" data-en="Email" data-uk="Електронна пошта">Email</label>
-        <input id="email" type="email" required placeholder="you@example.com" />
+        <input id="email" name="email" type="email" required placeholder="you@example.com" />
 
         <div class="row">
           <div>
             <label for="phone" data-en="Phone (optional)" data-uk="Телефон (необов'язково)">Phone (optional)</label>
-            <input id="phone" type="tel" />
+            <input id="phone" name="phone" type="tel" placeholder="+1 555 555 5555" />
           </div>
           <div>
             <label for="role" data-en="Interested as" data-uk="Цікавить як">Interested as</label>
-            <select id="role">
+            <select id="role" name="role">
               <option data-en="User" data-uk="Користувач">User</option>
               <option data-en="Team" data-uk="Команда">Team</option>
               <option data-en="Partner" data-uk="Партнер">Partner</option>
@@ -189,7 +55,7 @@
         </div>
 
         <label for="notes" data-en="Note (optional)" data-uk="Примітка (необов'язково)">Note (optional)</label>
-        <textarea id="notes" rows="3"></textarea>
+        <textarea id="notes" name="notes" rows="3"></textarea>
 
         <button type="submit" class="submit" data-en="Pre-register" data-uk="Попередня реєстрація">
           Pre-register
@@ -207,24 +73,6 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const langBtns = document.querySelectorAll(".lang-btn");
-    langBtns.forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        langBtns.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const lang = btn.dataset.lang;
-        document.querySelectorAll("[data-"+lang+"]").forEach(el=>{
-          el.textContent = el.dataset[lang];
-        });
-        // обновляем placeholder для email, name и т.д.
-        document.getElementById("name").placeholder = lang === "uk" ? "Іван Петренко" : "Jane Doe";
-        document.getElementById("email").placeholder = lang === "uk" ? "ви@пошта.com" : "you@example.com";
-        document.getElementById("phone").placeholder = lang === "uk" ? "+380 67 123 4567" : "+1 555 555 5555";
-      });
-    });
-  </script>
+  <script src="reg.js"></script>
 </body>
 </html>
