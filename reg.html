@@ -33,26 +33,15 @@
 
     <aside class="card">
       <form id="prereg" action="https://formspree.io/f/xovnbdav" method="POST">
-        <label for="name" data-en="Full name" data-uk="Повне ім'я">Full name</label>
-        <input id="name" name="name" type="text" required placeholder="Jane Doe" />
+        <label for="nickname" 
+               data-en="How should we call you?" 
+               data-uk="Як до вас звертатися?">
+               How should we call you?
+        </label>
+        <input id="nickname" name="nickname" type="text" required placeholder="nickname or alias" />
 
         <label for="email" data-en="Email" data-uk="Електронна пошта">Email</label>
         <input id="email" name="email" type="email" required placeholder="you@example.com" />
-
-        <div class="row">
-          <div>
-            <label for="phone" data-en="Phone (optional)" data-uk="Телефон (необов'язково)">Phone (optional)</label>
-            <input id="phone" name="phone" type="tel" placeholder="+1 555 555 5555" />
-          </div>
-          <div>
-            <label for="role" data-en="Interested as" data-uk="Цікавить як">Interested as</label>
-            <select id="role" name="role">
-              <option data-en="User" data-uk="Користувач">User</option>
-              <option data-en="Team" data-uk="Команда">Team</option>
-              <option data-en="Partner" data-uk="Партнер">Partner</option>
-            </select>
-          </div>
-        </div>
 
         <label for="notes" data-en="Note (optional)" data-uk="Примітка (необов'язково)">Note (optional)</label>
         <textarea id="notes" name="notes" rows="3"></textarea>

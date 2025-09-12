@@ -16,9 +16,10 @@ langBtns.forEach(btn => {
     });
 
     // обновляем плейсхолдеры
-    document.getElementById("name").placeholder = lang === "uk" ? "Іван Петренко" : "Jane Doe";
-    document.getElementById("email").placeholder = lang === "uk" ? "ви@пошта.com" : "you@example.com";
-    document.getElementById("phone").placeholder = lang === "uk" ? "+380 67 123 4567" : "+1 555 555 5555";
+    document.getElementById("nickname").placeholder = 
+      lang === "uk" ? "нік або ім'я" : "nickname or alias";
+    document.getElementById("email").placeholder = 
+      lang === "uk" ? "ви@пошта.com" : "you@example.com";
   });
 });
 
