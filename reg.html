@@ -4,32 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wapp — Coming Soon</title>
-  <meta name="description" content="Pre-register for Wapp — a new app coming soon." />
   <style>
     :root {
+      --bg-1: #0f1720;
+      --bg-2: #08121a;
       --accent: #7c5cff;
-      --accent2: #4fd1c5;
       --muted: #9aa4b2;
       --success: #2ecc71;
     }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 36px;
-      background: linear-gradient(-45deg, var(--accent), var(--accent2), #0f1720, #08121a);
-      background-size: 400% 400%;
-      animation: gradientShift 12s ease infinite;
       color: #e6eef8;
+      background: linear-gradient(-45deg, var(--bg-1), var(--bg-2), #1b2a3a, #0f1720);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -39,265 +32,184 @@
     .container {
       width: 100%;
       max-width: 920px;
+      margin: 0 auto;
+      padding: 24px;
       display: grid;
       grid-template-columns: 1fr 420px;
       gap: 28px;
-      align-items: center;
     }
     @media (max-width: 880px) {
-      .container { grid-template-columns: 1fr; padding: 18px; }
+      .container { grid-template-columns: 1fr; gap: 20px; }
     }
 
     .card {
       padding: 26px;
       border-radius: 14px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.55);
     }
 
-    .hero { padding: 36px; }
-
+    .hero { margin-top: 20px; }
     .logo {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 18px;
     }
     .logo-mark {
-      width: 52px; height: 52px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #4fd1c5);
       display: grid; place-items: center;
-      font-weight: 700; color: #061022; font-size: 18px;
-      box-shadow: 0 6px 20px rgba(124,92,255,0.18), inset 0 -6px 18px rgba(0,0,0,0.2);
+      font-weight: 700; color: #061022;
+      font-size: 18px;
+      box-shadow: 0 6px 20px rgba(124, 92, 255, 0.18);
     }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      line-height: 1.1;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.lead { margin: 0; color: var(--muted); font-size: 15px; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    p.lead { color: var(--muted); margin-bottom: 16px; }
 
     .features {
-      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 16px;
     }
     .feature {
-      background: rgba(255,255,255,0.05);
-      padding: 10px 12px;
-      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      padding: 8px 12px;
+      border-radius: 8px;
       font-size: 13px;
       color: var(--muted);
     }
 
     form { display: flex; flex-direction: column; gap: 12px; }
     label { font-size: 13px; color: var(--muted); }
-
     input, select, textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.05);
-      color: inherit;
-      font-size: 14px;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
+      width: 100%; padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+      color: inherit; font-size: 14px;
     }
     input:focus, select:focus, textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 12px rgba(124,92,255,0.25);
+      outline: none;
     }
-
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
 
     .submit {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 10px; padding: 11px 14px;
-      border-radius: 10px; border: none;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #071022; font-weight: 600; cursor: pointer; font-size: 15px;
-      box-shadow: 0 8px 24px rgba(124,92,255,0.25);
-      transition: transform .2s;
-    }
-    .submit:hover { transform: translateY(-2px) scale(1.02); }
-
-    .small { font-size: 12px; color: var(--muted); }
-    .success {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px; border-radius: 10px;
-      background: rgba(46,204,113,0.08);
-      color: var(--success); font-weight: 600;
-      border: 1px solid rgba(46,204,113,0.15);
-    }
-    .muted-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
-    .foot { margin-top: 12px; font-size: 12px; color: var(--muted); text-align: center; }
-
-    /* 🔘 кнопка смены языка */
-    .lang-switch {
-      position: fixed;
-      top: 16px; right: 16px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(90deg, var(--accent), #4fd1c5);
+      color: #061022;
+      padding: 11px;
+      border: none;
       border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 13px;
-      color: var(--accent);
+      font-weight: 600;
       cursor: pointer;
-      transition: background .2s;
-      z-index: 10;
+      transition: transform 0.2s ease;
     }
-    .lang-switch:hover { background: rgba(255,255,255,0.08); }
+    .submit:hover { transform: translateY(-2px); }
+    .success { color: var(--success); margin-top: 8px; font-size: 14px; }
+
+    footer {
+      text-align: center;
+      padding: 12px;
+      margin-top: auto;
+      color: var(--muted);
+    }
+    .lang-switch {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #061022;
+    }
   </style>
 </head>
 <body>
-  <!-- 🌐 переключатель языка -->
-  <button id="langBtn" class="lang-switch">UA</button>
-
-  <main class="container" aria-labelledby="title">
+  <main class="container">
     <section class="hero card">
       <div class="logo">
         <div class="logo-mark">W</div>
         <div>
           <div style="font-weight:700">Wapp</div>
-          <div style="font-size:12px;color:var(--muted)" data-en="New app · launching soon" data-ua="Новий додаток · скоро запуск">
-            New app · launching soon
-          </div>
+          <div style="font-size:12px;color:var(--muted)">Launching soon</div>
         </div>
       </div>
-
-      <h1 id="title" data-en="Get early access to Wapp" data-ua="Отримай ранній доступ до Wapp">Get early access to Wapp</h1>
+      <h1 data-en="Get early access to Wapp" data-uk="Отримайте ранній доступ до Wapp">
+        Get early access to Wapp
+      </h1>
       <p class="lead" data-en="A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch."
-         data-ua="Невеликий і зручний додаток, щоб спростити твою роботу. Зареєструйся зараз, і ми повідомимо, коли запустимось.">
-        A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch.
+         data-uk="Невеликий і зручний додаток, щоб спростити ваш щоденний робочий процес. Зареєструйтеся зараз, і ми повідомимо вас про запуск.">
+         A small & focused app to simplify your daily workflow. Pre-register now and we'll notify you when we launch.
       </p>
-
-      <div class="features" aria-hidden="true">
-        <div class="feature" data-en="Beta invites" data-ua="Бета-запрошення">Beta invites</div>
-        <div class="feature" data-en="Priority support" data-ua="Пріоритетна підтримка">Priority support</div>
-        <div class="feature" data-en="Exclusive updates" data-ua="Ексклюзивні оновлення">Exclusive updates</div>
+      <div class="features">
+        <div class="feature" data-en="Beta invites" data-uk="Бета доступ">Beta invites</div>
+        <div class="feature" data-en="Priority support" data-uk="Пріоритетна підтримка">Priority support</div>
+        <div class="feature" data-en="Exclusive updates" data-uk="Ексклюзивні оновлення">Exclusive updates</div>
       </div>
-
-      <div class="muted-note" data-en="No spam. Unsubscribe any time." data-ua="Без спаму. Можна відписатись у будь-який момент.">No spam. Unsubscribe any time.</div>
     </section>
 
-    <aside class="card" aria-label="Pre-registration form">
-      <form id="prereg" novalidate>
-        <div>
-          <label for="name" data-en="Full name" data-ua="Повне ім’я">Full name</label>
-          <input id="name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
-        </div>
-
-        <div>
-          <label for="email" data-en="Email address" data-ua="Електронна адреса">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
-        </div>
-
+    <aside class="card">
+      <form id="prereg">
+        <label for="name">Full name</label>
+        <input id="name" type="text" required placeholder="Jane Doe" />
+        <label for="email">Email</label>
+        <input id="email" type="email" required placeholder="you@example.com" />
         <div class="row">
           <div>
-            <label for="phone" data-en="Phone (optional)" data-ua="Телефон (необов’язково)">Phone (optional)</label>
-            <input id="phone" name="phone" type="tel" placeholder="+1 555 555 5555" autocomplete="tel" />
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" type="tel" />
           </div>
           <div>
-            <label for="role" data-en="Interested as" data-ua="Цікавить як">Interested as</label>
-            <select id="role" name="role">
-              <option value="user" data-en="User" data-ua="Користувач">User</option>
-              <option value="team" data-en="Team / Company" data-ua="Команда / Компанія">Team / Company</option>
-              <option value="partner" data-en="Partner" data-ua="Партнер">Partner</option>
+            <label for="role">Interested as</label>
+            <select id="role">
+              <option>User</option><option>Team</option><option>Partner</option>
             </select>
           </div>
         </div>
-
-        <div>
-          <label for="notes" data-en="What would you like to try?" data-ua="Що хотів би спробувати?">
-            What would you like to try?
-            <span class="small" data-en="(optional)" data-ua="(необов’язково)">(optional)</span>
-          </label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Quick note..."></textarea>
-        </div>
-
-        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:6px">
-          <label style="display:flex;gap:8px;align-items:center">
-            <input id="newsletter" name="newsletter" type="checkbox" />
-            <span class="small" data-en="Send me updates" data-ua="Надсилайте мені оновлення">Send me updates</span>
-          </label>
-          <button class="submit" type="submit" id="submitBtn" data-en="Pre-register" data-ua="Передреєстрація">Pre-register</button>
-        </div>
-
-        <div id="message" style="margin-top:12px"></div>
-        <div class="foot" data-en="We'll only use your data to send launch information. See privacy policy." data-ua="Ми використаємо твої дані лише для інформування про запуск. Дивись політику конфіденційності.">
-          We'll only use your data to send launch information. See privacy policy.
-        </div>
+        <label for="notes">Note (optional)</label>
+        <textarea id="notes" rows="3"></textarea>
+        <button type="submit" class="submit">Pre-register</button>
+        <div id="message"></div>
       </form>
     </aside>
   </main>
 
+  <footer>
+    © <span id="year"></span> Wapp
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="uk">UA</button>
+    </div>
+  </footer>
+
   <script>
-    // 🌐 переключатель языка
-    const langBtn = document.getElementById('langBtn');
-    let currentLang = 'en';
-    langBtn.addEventListener('click', () => {
-      currentLang = currentLang === 'en' ? 'ua' : 'en';
-      langBtn.textContent = currentLang === 'en' ? 'UA' : 'EN';
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const langBtns = document.querySelectorAll(".lang-btn");
+    langBtns.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        langBtns.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const lang = btn.dataset.lang;
+        document.querySelectorAll("[data-"+lang+"]").forEach(el=>{
+          el.textContent = el.dataset[lang];
+        });
       });
     });
-
-    // форма
-    (function(){
-      const form = document.getElementById('prereg');
-      const email = document.getElementById('email');
-      const name = document.getElementById('name');
-      const submitBtn = document.getElementById('submitBtn');
-      const msg = document.getElementById('message');
-
-      function validEmail(v){
-        return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v);
-      }
-      function showMessage(html, success){
-        msg.innerHTML = '';
-        const d = document.createElement('div');
-        d.className = success ? 'success' : 'small';
-        d.innerHTML = html;
-        msg.appendChild(d);
-      }
-
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        msg.innerHTML = '';
-        const vals = {
-          name: name.value.trim(),
-          email: email.value.trim()
-        };
-        if(!vals.name){
-          showMessage(currentLang==='en' ? 'Please enter your full name.' : 'Введи повне ім’я.', false);
-          name.focus(); return;
-        }
-        if(!validEmail(vals.email)){
-          showMessage(currentLang==='en' ? 'Please enter a valid email.' : 'Введи правильний email.', false);
-          email.focus(); return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = currentLang==='en' ? 'Sending...' : 'Відправка...';
-
-        setTimeout(() => {
-          showMessage(currentLang==='en'
-            ? 'Thanks! You are on the list — we will notify you when Wapp launches.'
-            : 'Дякуємо! Тебе додано до списку — ми повідомимо про запуск Wapp.', true);
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.textContent = currentLang==='en' ? 'Pre-register' : 'Передреєстрація';
-        }, 900);
-      });
-    })();
   </script>
 </body>
 </html>
