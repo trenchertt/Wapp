@@ -37,6 +37,7 @@
       display: grid;
       grid-template-columns: 1fr 420px;
       gap: 28px;
+      align-items: stretch; /* контейнеры растягиваются одинаково */
     }
     @media (max-width: 880px) {
       .container { grid-template-columns: 1fr; gap: 20px; }
@@ -48,6 +49,7 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: 0 8px 30px rgba(2, 6, 23, 0.55);
+      min-height: 100%; /* выравнивание высоты */
     }
 
     .hero { margin-top: 20px; }
@@ -94,6 +96,7 @@
       border-color: var(--accent);
       outline: none;
     }
+    textarea { resize: none; } /* фикс бага с растягиванием */
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
 
@@ -164,25 +167,33 @@
 
     <aside class="card">
       <form id="prereg">
-        <label for="name">Full name</label>
+        <label for="name" data-en="Full name" data-uk="Повне ім'я">Full name</label>
         <input id="name" type="text" required placeholder="Jane Doe" />
-        <label for="email">Email</label>
+
+        <label for="email" data-en="Email" data-uk="Електронна пошта">Email</label>
         <input id="email" type="email" required placeholder="you@example.com" />
+
         <div class="row">
           <div>
-            <label for="phone">Phone (optional)</label>
+            <label for="phone" data-en="Phone (optional)" data-uk="Телефон (необов'язково)">Phone (optional)</label>
             <input id="phone" type="tel" />
           </div>
           <div>
-            <label for="role">Interested as</label>
+            <label for="role" data-en="Interested as" data-uk="Цікавить як">Interested as</label>
             <select id="role">
-              <option>User</option><option>Team</option><option>Partner</option>
+              <option data-en="User" data-uk="Користувач">User</option>
+              <option data-en="Team" data-uk="Команда">Team</option>
+              <option data-en="Partner" data-uk="Партнер">Partner</option>
             </select>
           </div>
         </div>
-        <label for="notes">Note (optional)</label>
+
+        <label for="notes" data-en="Note (optional)" data-uk="Примітка (необов'язково)">Note (optional)</label>
         <textarea id="notes" rows="3"></textarea>
-        <button type="submit" class="submit">Pre-register</button>
+
+        <button type="submit" class="submit" data-en="Pre-register" data-uk="Попередня реєстрація">
+          Pre-register
+        </button>
         <div id="message"></div>
       </form>
     </aside>
@@ -208,6 +219,10 @@
         document.querySelectorAll("[data-"+lang+"]").forEach(el=>{
           el.textContent = el.dataset[lang];
         });
+        // обновляем placeholder для email, name и т.д.
+        document.getElementById("name").placeholder = lang === "uk" ? "Іван Петренко" : "Jane Doe";
+        document.getElementById("email").placeholder = lang === "uk" ? "ви@пошта.com" : "you@example.com";
+        document.getElementById("phone").placeholder = lang === "uk" ? "+380 67 123 4567" : "+1 555 555 5555";
       });
     });
   </script>
