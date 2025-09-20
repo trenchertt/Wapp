@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lmaxcoin - Luxmaxing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             color: #fff;
             overflow-x: hidden;
@@ -37,7 +38,7 @@
             animation: bounce 2s infinite ease-in-out;
         }
 
-        .monkey img {
+        .monkey svg {
             width: 100%;
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
         }
@@ -109,22 +110,36 @@
 <body>
     <div class="container">
         <div class="monkey">
-            <!-- Замените src на реальное изображение гига чад обезьяны -->
-            <img src="https://via.placeholder.com/400x400.png?text=Giga+Chad+Monkey" alt="Giga Chad Monkey">
+            <!-- Простое SVG-изображение обезьяны, показывающей средний палец -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="#4a4a4a"/>
+                <!-- Лицо обезьяны -->
+                <circle cx="100" cy="80" r="50" fill="#8b5e3c"/>
+                <circle cx="80" cy="70" r="10" fill="#fff"/>
+                <circle cx="120" cy="70" r="10" fill="#fff"/>
+                <circle cx="80" cy="70" r="5" fill="#000"/>
+                <circle cx="120" cy="70" r="5" fill="#000"/>
+                <!-- Рука со средним пальцем -->
+                <rect x="90" y="100" width="20" height="60" fill="#8b5e3c"/>
+                <rect x="95" y="80" width="10" height="30" fill="#8b5e3c"/>
+                <!-- Уши -->
+                <circle cx="60" cy="80" r="15" fill="#8b5e3c"/>
+                <circle cx="140" cy="80" r="15" fill="#8b5e3c"/>
+            </svg>
         </div>
         <h1 class="title">Lmaxcoin</h1>
         <p class="subtitle">The Ultimate Luxmaxing Token</p>
     </div>
 
     <script>
-        // Простая анимация для плавного скролла
+        // Плавная анимация при скролле
         window.addEventListener('scroll', () => {
             const elements = document.querySelectorAll('.container > *');
             elements.forEach((el, index) => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top <= window.innerHeight * 0.8) {
                     el.style.animationDelay = `${index * 0.2}s`;
-                    el.classList.add('fadeIn');
+                    el.style.opacity = '1';
                 }
             });
         });
