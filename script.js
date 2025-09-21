@@ -1,4 +1,4 @@
-// Countdown с анимацией
+// Countdown с плавной анимацией
 const daysEl = document.getElementById('days'),
       hoursEl = document.getElementById('hours'),
       minutesEl = document.getElementById('minutes'),

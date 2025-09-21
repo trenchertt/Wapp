@@ -7,7 +7,6 @@
 }
 
 * {margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif;}
-
 body {
   min-height:100vh;
   display:flex;
@@ -19,50 +18,30 @@ body {
   flex-direction:column;
   padding:1rem;
 }
-
-.overlay {
-  position:absolute;inset:0;background:rgba(0,0,0,0.65);
-}
-
-/* Центрируем контейнер */
-.center-container {
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:100%;
-  max-width:420px;
-}
+.overlay {position:absolute;inset:0;background:rgba(0,0,0,0.65);}
+.center-container{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:420px;}
 
 /* Countdown */
 .countdown-card {
   background: var(--bg-dark);
-  padding:1.5rem 2rem;
+  padding:2rem;
   border-radius:16px;
   width:100%;
   box-shadow:0 8px 30px rgba(0,0,0,0.6);
   backdrop-filter:blur(10px);
   text-align:center;
-  margin-bottom:1rem;
+  margin-bottom:1.5rem;
   opacity:0;
   transform:translateY(20px) scale(0.95);
   animation:fadeInScale .6s forwards;
 }
 
-.countdown-card h1 {margin-bottom:1rem;font-size:1.7rem;}
-#countdown {
-  font-size:1.8rem;
-  letter-spacing:2px;
-  display:flex;
-  justify-content:center;
-  gap:0.3rem;
-}
-#countdown span {
-  display:inline-block;
-  min-width:2ch;
-  transition: transform .3s ease;
-}
+.countdown-card h1{margin-bottom:1rem;font-size:1.7rem;}
+#countdown{display:flex;justify-content:center;align-items:center;gap:0.5rem;}
+.time-block{display:flex;flex-direction:column;align-items:center;background:#2a2a2a;padding:0.5rem 0.8rem;border-radius:12px;min-width:60px;transition: transform 0.3s ease, box-shadow 0.3s ease;}
+.time-block span{font-size:1.8rem;display:block;transition: transform 0.3s ease;}
+.time-block small{font-size:0.65rem;margin-top:0.2rem;opacity:0.7;}
+.separator{font-size:1.8rem;opacity:0.7;transition: transform 0.3s ease;}
 
 /* Карточки формы и успеха */
 .card {
@@ -80,17 +59,15 @@ body {
   transition:transform .4s ease;
 }
 .card:hover {transform:scale(1.02);}
-@keyframes fadeInScale {0%{opacity:0;transform:translateY(20px) scale(0.95);}100%{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes fadeInScale{0%{opacity:0;transform:translateY(20px) scale(0.95);}100%{opacity:1;transform:translateY(0) scale(1);}}
 
-h1 {margin-bottom:1.5rem;font-size:1.7rem;letter-spacing:1px;}
+h1{margin-bottom:1.5rem;font-size:1.7rem;letter-spacing:1px;}
 .form-group{text-align:left;margin-bottom:1rem;}
 label{display:block;margin-bottom:.5rem;font-size:.9rem;opacity:.85;}
 input{width:100%;padding:.8rem;border:none;border-radius:8px;background:#2a2a2a;color:#fff;font-size:1rem;transition:.3s;}
 input:focus{outline:none;background:#333;box-shadow:0 0 10px var(--purple);}
-
 .btn{width:100%;padding:.9rem;margin-top:.5rem;border:none;border-radius:10px;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;font-size:1rem;transition:.3s;}
 .btn:hover{box-shadow:0 6px 20px rgba(154,123,214,.4);}
-
 .msg{font-size:.85rem;margin-bottom:.5rem;text-align:center;opacity:0;transform:translateY(5px);transition:.3s;}
 .msg.show{opacity:1;transform:translateY(0);}
 .msg.error{color:var(--error);}
@@ -111,7 +88,8 @@ path{stroke:var(--success);stroke-width:5;fill:none;stroke-linecap:round;stroke-
 /* Адаптивность */
 @media (max-width:480px){
   h1{font-size:1.5rem;}
-  #countdown{font-size:1.4rem;}
+  #countdown .time-block span{font-size:1.4rem;}
+  #countdown .separator{font-size:1.4rem;}
   input{font-size:.95rem;}
   .btn{font-size:.95rem;}
 }
