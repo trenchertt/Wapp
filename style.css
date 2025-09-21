@@ -21,6 +21,7 @@ body {
   background: url("assets/images/background.jpeg") no-repeat center/cover;
   color: #fff;
   overflow: hidden;
+  flex-direction: column;
 }
 
 .overlay {
@@ -29,6 +30,35 @@ body {
   background: rgba(0, 0, 0, 0.65);
 }
 
+/* Countdown */
+.countdown-card {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-dark);
+  padding: 2rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: fadeInScale 0.6s forwards;
+}
+
+.countdown-card h1 {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+}
+
+#countdown {
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+/* General Card */
 .card {
   position: relative;
   z-index: 2;
@@ -43,6 +73,11 @@ body {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
   animation: fadeInScale 0.6s forwards;
+  transition: transform 0.4s ease;
+  margin-bottom: 1.5rem;
+}
+.card:hover {
+  transform: scale(1.02);
 }
 
 @keyframes fadeInScale {
