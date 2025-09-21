@@ -1,4 +1,9 @@
-// Countdown
+// Countdown с анимацией
+const daysEl = document.getElementById('days'),
+      hoursEl = document.getElementById('hours'),
+      minutesEl = document.getElementById('minutes'),
+      secondsEl = document.getElementById('seconds');
+
 const countdown = () => {
   const endDate = new Date('October 1, 2025 00:00:00').getTime();
   const now = new Date().getTime();
@@ -6,16 +11,23 @@ const countdown = () => {
 
   if(diff < 0) return;
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  const days = Math.floor(diff / (1000*60*60*24)),
+        hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60)),
+        minutes = Math.floor((diff % (1000*60*60)) / (1000*60)),
+        seconds = Math.floor((diff % (1000*60)) / 1000);
 
-  document.getElementById('days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  updateElement(daysEl, days);
+  updateElement(hoursEl, hours);
+  updateElement(minutesEl, minutes);
+  updateElement(secondsEl, seconds);
 };
+
+const updateElement = (el, value) => {
+  el.style.transform = 'scale(1.3)';
+  el.textContent = value.toString().padStart(2,'0');
+  setTimeout(()=>el.style.transform='scale(1)',300);
+};
+
 setInterval(countdown, 1000);
 countdown();
 
