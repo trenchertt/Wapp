@@ -10,13 +10,20 @@ form.addEventListener("submit", async e => {
   const email = form.email.value.trim();
   const pass = form.password.value;
 
+  // Проверка email и пароля
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const passOk = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?]).{6,21}$/.test(pass);
 
+  // Ошибка по умолчанию
   let err = "";
-  if (!nick) err = "Enter your nickname.";
-  else if (!emailOk) err = "Enter a valid e-mail.";
-  else if (!passOk) err = "Password: 6-21 chars, letters, numbers & symbol.";
+
+  if (!nick || !email || !pass) {
+    err = "Please fill in all fields.";
+  } else if (!emailOk) {
+    err = "Enter a valid e-mail.";
+  } else if (!passOk) {
+    err = "Password: 6-21 chars, letters, numbers & symbol.";
+  }
 
   if (err) {
     msg.textContent = err;
@@ -25,6 +32,7 @@ form.addEventListener("submit", async e => {
     return;
   }
 
+  // Отправка данных на Formspree
   try {
     const res = await fetch(form.action, {
       method: form.method,
