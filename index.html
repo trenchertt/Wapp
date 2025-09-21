@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wapp — Winter Arc App</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wapp — Winter Arc App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="overlay"></div>
 
-  <div class="center-container">
-    <!-- Countdown -->
-    <div class="countdown-card">
-      <h1>It's coming soon</h1>
-      <div id="countdown">
-        <div class="time-block">
-          <span id="days">00</span>
-          <small>Days</small>
-        </div>
-        <div class="separator">:</div>
-        <div class="time-block">
-          <span id="hours">00</span>
-          <small>Hours</small>
-        </div>
-        <div class="separator">:</div>
-        <div class="time-block">
-          <span id="minutes">00</span>
-          <small>Minutes</small>
-        </div>
-        <div class="separator">:</div>
-        <div class="time-block">
-          <span id="seconds">00</span>
-          <small>Seconds</small>
-        </div>
+  <!-- Countdown as background card -->
+  <div class="countdown-bg">
+    <div id="countdown">
+      <div class="time-block">
+        <span id="days">00</span>
+        <div class="label">Days</div>
+      </div>
+      <div class="time-block">
+        <span id="hours">00</span>
+        <div class="label">Hours</div>
+      </div>
+      <div class="time-block">
+        <span id="minutes">00</span>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="time-block">
+        <span id="seconds">00</span>
+        <div class="label">Seconds</div>
       </div>
     </div>
+    <div class="coming-soon">It's coming soon</div>
+  </div>
 
-    <!-- Pre-Register Form -->
+  <!-- Centered Pre-Register Form -->
+  <div class="center-container">
     <div class="card form">
       <h1>Wapp Pre-Register</h1>
       <form id="preRegForm" action="https://formspree.io/f/xovnbdav" method="POST" novalidate>
@@ -66,6 +63,6 @@
     </div>
   </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
