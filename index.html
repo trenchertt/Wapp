@@ -1,147 +1,43 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wapp — Winter Arc App</title>
-  <style>
-    /* Сброс */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", sans-serif;
-    }
-
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url("background.jpg") no-repeat center center/cover;
-      color: #fff;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1;
-    }
-
-    .form-container {
-      position: relative;
-      z-index: 2;
-      background: rgba(20, 20, 20, 0.85);
-      padding: 2rem;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 1s ease;
-    }
-
-    .form-container h1 {
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-      text-align: left;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      background: #2a2a2a;
-      color: #fff;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      background: #333;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 0.9rem;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #4a90e2, #357ab7);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Адаптив */
-    @media (max-width: 500px) {
-      .form-container h1 {
-        font-size: 1.4rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="overlay"></div>
 
-  <div class="form-container">
+  <!-- Форма -->
+  <div class="card form">
     <h1>Wapp Pre-Register</h1>
-    <form id="preRegForm">
+    <form id="preRegForm" action="https://formspree.io/f/xovnbdav" method="POST" novalidate>
       <div class="form-group">
-        <label for="nickname">Ник</label>
-        <input type="text" id="nickname" name="nickname" required>
+        <label for="nickname">Nickname</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Nickname" required>
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
       </div>
       <div class="form-group">
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
       </div>
-      <button type="submit" class="btn">Зарегистрироваться</button>
+      <div class="msg" id="msg"></div>
+      <button type="submit" class="btn">Submit</button>
     </form>
   </div>
-  
-    <script>
-    const form = document.getElementById("preRegForm");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const nickname = form.nickname.value;
-      const email = form.email.value;
-      const password = form.password.value;
 
-      // Здесь можно подключить сервер через fetch()
-      alert(`Регистрация успешна!\nНик: ${nickname}\nE-mail: ${email}`);
-    });
-  </script>
+  <!-- Успех -->
+  <div class="card success" id="success">
+    <div class="circle">
+      <svg viewBox="0 0 52 52"><path d="M14 27 L22 35 L38 19"></path></svg>
+    </div>
+    <div class="success-text">Successful Registration</div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
