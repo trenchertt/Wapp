@@ -9,58 +9,33 @@
 <body>
   <div class="overlay"></div>
 
-  <!-- Countdown as background card -->
-  <div class="countdown-bg">
-    <div id="countdown">
-      <div class="time-block">
-        <span id="days">00</span>
-        <div class="label">Days</div>
+  <!-- Форма -->
+  <div class="card form">
+    <h1>Wapp Pre-Register</h1>
+    <form id="preRegForm" action="https://formspree.io/f/xovnbdav" method="POST" novalidate>
+      <div class="form-group">
+        <label for="nickname">Nickname</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Nickname" required>
       </div>
-      <div class="time-block">
-        <span id="hours">00</span>
-        <div class="label">Hours</div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
       </div>
-      <div class="time-block">
-        <span id="minutes">00</span>
-        <div class="label">Minutes</div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
       </div>
-      <div class="time-block">
-        <span id="seconds">00</span>
-        <div class="label">Seconds</div>
-      </div>
-    </div>
-    <div class="coming-soon">It's coming soon</div>
+      <div class="msg" id="msg"></div>
+      <button type="submit" class="btn">Submit</button>
+    </form>
   </div>
 
-  <!-- Centered Pre-Register Form -->
-  <div class="center-container">
-    <div class="card form">
-      <h1>Wapp Pre-Register</h1>
-      <form id="preRegForm" action="https://formspree.io/f/xovnbdav" method="POST" novalidate>
-        <div class="form-group">
-          <label for="nickname">Nickname</label>
-          <input type="text" id="nickname" name="nickname" placeholder="Nickname" required>
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="E-mail" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="msg" id="msg"></div>
-        <button type="submit" class="btn">Submit</button>
-      </form>
+  <!-- Успех -->
+  <div class="card success" id="success">
+    <div class="circle">
+      <svg viewBox="0 0 52 52"><path d="M14 27 L22 35 L38 19"></path></svg>
     </div>
-
-    <!-- Success -->
-    <div class="card success" id="success">
-      <div class="circle">
-        <svg viewBox="0 0 52 52"><path d="M14 27 L22 35 L38 19"></path></svg>
-      </div>
-      <div class="success-text">Successful Registration</div>
-    </div>
+    <div class="success-text">Successful Registration</div>
   </div>
 
   <script src="script.js"></script>
