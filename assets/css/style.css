@@ -18,7 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("assets/images/background.jpeg") no-repeat center/cover;
+  background: url("../images/background.jpeg") no-repeat center/cover;
   color: #fff;
   overflow: hidden;
 }
