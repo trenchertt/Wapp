@@ -1,29 +1,28 @@
-/* prereg.js - validation + send to Formspree + success animation */
+/* prereg.js - validation + Formspree + success animation */
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('preRegForm');
   const msg = document.getElementById('errorMessage');
   const success = document.getElementById('success');
 
-  function showError(text){
-    msg.textContent = text;
-    msg.className = 'error-message show error';
-    // small shake on inputs
-    form.querySelectorAll('input').forEach(i => {
-      i.classList.add('shake');
-      setTimeout(()=> i.classList.remove('shake'), 400);
-    });
-  }
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?]).{6,21}$/;
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const nick = form.nickname.value.trim();
-    const email = form.email.value.trim();
-    const pass = form.password.value;
+  function showError(text){
+    msg.textContent=text;
+    msg.className='error-message show error';
+    form.querySelectorAll('input').forEach(i=>{
+      i.classList.add('shake');
+      setTimeout(()=>i.classList.remove('shake'),400);
+    });
+  }
 
-    if(!nick || !email || !pass){
+  form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const nick=form.nickname.value.trim();
+    const email=form.email.value.trim();
+    const pass=form.password.value;
+
+    if(!nick||!email||!pass){
       showError('Please fill in all fields.');
       return;
     }
@@ -36,26 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // send to Formspree
     try {
-      const res = await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+      const res = await fetch(form.action,{
+        method:form.method,
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
       });
       if(res.ok){
         form.style.display='none';
         success.style.display='flex';
         form.reset();
-        setTimeout(()=> {
+        setTimeout(()=>{
           success.classList.add('fade-out');
-          setTimeout(()=> window.location.href = 'index.html', 900);
-        }, 3000);
-      } else {
-        showError('Something went wrong. Try again.');
-      }
-    } catch (err){
-      showError('Network error. Try again.');
-    }
+          setTimeout(()=>window.location.href='index.html',900);
+        },3000);
+      } else showError('Something went wrong. Try again.');
+    } catch(err){ showError('Network error. Try again.'); }
   });
 });
