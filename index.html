@@ -1,20 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Winter Arc — Wapp</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="scene">
-    <!-- background layers -->
-    <div class="bg-layer bg-gradient"></div>
-    <canvas id="particles" class="bg-layer"></canvas>
-    <div class="bg-layer bg-noise"></div>
-    <div class="bg-overlay"></div>
-
-    <!-- ghost letters -->
+  <div class="bg-wrap">
+    <img class="bg-img" src="assets/images/background.jpeg" alt="background">
+    <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="noise"></div>
     <div class="ghost">WTR</div>
   </div>
 
@@ -24,88 +20,105 @@
       <div class="brand-title">Winter Arc</div>
     </div>
     <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#token">Token</a>
-      <a href="prereg.html" class="nav-cta">Pre-Register</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#token">Token</a>
+      <a class="nav-cta" href="prereg.html">Pre-Register</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="hero">
+    <section class="hero">
       <div class="hero-inner">
         <h1 class="hero-title">Winter Arc</h1>
-        <p class="hero-sub">Survive the arc. Earn $WTR. Rise through levels—this is Winter Arc.</p>
+        <p class="hero-sub">Survive the arc. Earn $WTR. Level up your reality.</p>
+
         <div class="hero-actions">
-          <a href="prereg.html" class="btn btn-primary" id="ctaPrereg">Enter Pre-Registration</a>
-          <button class="btn btn-ghost" id="learnBtn">Learn more</button>
+          <a id="ctaPrereg" class="btn-primary" href="prereg.html">Enter Pre-Registration</a>
+          <button id="learnBtn" class="btn-ghost">Learn more</button>
         </div>
-        <div class="meta">
-          <div class="meta-item"><span class="k">App</span><span class="v">Winter Arc (Wapp)</span></div>
-          <div class="meta-item"><span class="k">Token</span><span class="v">$WTR</span></div>
+
+        <div class="hero-meta">
+          <div class="meta">
+            <span class="meta-key">App</span>
+            <span class="meta-val">Wapp — Winter Arc</span>
+          </div>
+          <div class="meta">
+            <span class="meta-key">Token</span>
+            <span class="meta-val">$WTR</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="about" class="panel">
-      <div class="panel-inner reveal">
-        <h2>About Winter Arc</h2>
-        <p class="lead">Winter Arc is a challenge-first app blending real-life cold-edge missions with on-chain reward mechanics. Complete tasks (cold shower, run, haircut, etc.), validate your completion and earn $WTR. Track profile, timeline, levels and stats — all inside Wapp.</p>
-
-        <div class="grid cards">
-          <article class="card tilt" data-tilt>
-            <h3>Wapp — The App</h3>
-            <p>Mission feed, profile, levels, timeline and social features. Record completion, gain XP, climb leaderboards.</p>
-          </article>
-
-          <article class="card tilt" data-tilt>
-            <h3>$WTR — The Token</h3>
-            <p>Earnable token for verified missions. Designed for activity reward; claim mechanisms and use-cases will be added to the ecosystem.</p>
-          </article>
-
-          <article class="card tilt" data-tilt>
-            <h3>Economy & Claim</h3>
-            <p>Tasks mint reward credits that convert to $WTR. Claim inside the app — tokenomics focused on long-term engagement and fair distribution.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="panel alt">
-      <div class="panel-inner reveal">
-        <h2>How it works</h2>
-        <div class="feature-steps">
-          <div class="step">
-            <div class="num">1</div>
-            <div class="txt"><strong>Choose Task</strong><div class="sub">From easy to brutal — pick and accept.</div></div>
-          </div>
-          <div class="step">
-            <div class="num">2</div>
-            <div class="txt"><strong>Record & Prove</strong><div class="sub">Short evidence (photo/video) or checklist plus optional community validation.</div></div>
-          </div>
-          <div class="step">
-            <div class="num">3</div>
-            <div class="txt"><strong>Claim $WTR</strong><div class="sub">Completed tasks convert to claimable $WTR inside Wapp.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel narrow reveal" id="cta-block">
       <div class="panel-inner">
-        <h3>Ready to join the arc?</h3>
-        <a href="prereg.html" class="btn btn-primary large" id="joinNow">Join Pre-Register</a>
-        <p class="muted">Hidden launch info stays hidden — your spot in pre-register is what matters.</p>
+        <h2 class="panel-title">What is Winter Arc?</h2>
+        <p class="panel-text">Winter Arc is an activity-driven application where users complete real-world “Arc” tasks — cold exposure, long runs, radical self-challenges — and earn $WTR tokens for verified completion. Track your profile, timeline, levels and claim tokens in-app.</p>
+
+        <div class="cards">
+          <article class="card interactive" data-tilt>
+            <div class="card-icon">❄️</div>
+            <h3>Arc Challenges</h3>
+            <p>Micro & macro tasks: cold showers, runs, radical lifestyle challenges. Verified by short proof to claim rewards.</p>
+          </article>
+
+          <article class="card interactive" data-tilt>
+            <div class="card-icon">📊</div>
+            <h3>Profile & Stats</h3>
+            <p>Leveling, timeline, streaks and performance metrics. Climb seasons, unlock tiers and rare rewards.</p>
+          </article>
+
+          <!-- third card replaced by "Ecosystem" -->
+          <article class="card interactive" data-tilt>
+            <div class="card-icon">🔗</div>
+            <h3>Ecosystem</h3>
+            <p>$WTR works as an in-app reward token. Earn, claim, and later use or trade (details released to community).</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="token" class="panel alt">
+      <div class="panel-inner">
+        <h2 class="panel-title">Token — $WTR</h2>
+        <p class="panel-text">$WTR is earned by completing tasks in Wapp. Tokens are designed to reward activity and growth. Tokenomics and claim process will be communicated to preregistred users first.</p>
+
+        <ul class="token-list">
+          <li><strong>Name</strong><span>Winter Arc Coin</span></li>
+          <li><strong>Symbol</strong><span>$WTR</span></li>
+          <li><strong>Purpose</strong><span>Rewards, in-app economy, staking & future utilities</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="principles panel">
+      <div class="panel-inner">
+        <h2 class="panel-title">Principles</h2>
+        <div class="principles-grid">
+          <div class="principle">
+            <h4>Authenticity</h4>
+            <p>Real tasks, real proof, real progression.</p>
+          </div>
+          <div class="principle">
+            <h4>Merit</h4>
+            <p>Rewards are based on difficulty, consistency and community validation.</p>
+          </div>
+          <div class="principle">
+            <h4>Community</h4>
+            <p>Shared challenges, leaderboards, seasonal events.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>© Winter Arc — Built for the curious & the relentless</div>
-      <div class="social">
-        <a href="#" aria-label="Discord">Discord</a>
-        <a href="#" aria-label="X">X</a>
-        <a href="#" aria-label="Telegram">Telegram</a>
+      <div>© 2025 Winter Arc</div>
+      <div class="links">
+        <a href="#">Discord</a>
+        <a href="#">X</a>
+        <a href="#">Telegram</a>
       </div>
     </div>
   </footer>

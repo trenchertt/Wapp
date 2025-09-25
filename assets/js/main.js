@@ -1,76 +1,122 @@
-// main.js — hero particles, tilt cards, reveal on scroll, CTA pulse, learn button
-document.addEventListener('DOMContentLoaded', () => {
-  // Canvas particles (subtle)
-  const canvas = document.getElementById('particles');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
-    function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; init(); }
-    function rand(min,max){ return Math.random()*(max-min)+min; }
-    function init(){
-      particles = [];
-      const count = Math.round((W*H)/70000); // scale
-      for(let i=0;i<count;i++){
-        particles.push({x:rand(0,W), y:rand(0,H), r:rand(0.6,2.2), vx:rand(-0.2,0.2), vy:rand(-0.2,0.2), alpha:rand(0.03,0.12)});
-      }
+/* main.js - hero canvas particle backdrop, tilt + reveal + small CTA pulse */
+(function(){
+  // canvas particle field (subtle cold particles + parallax)
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+  let w=0,h=0,particles=[];
+
+  function resize(){
+    if(!canvas) return;
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  function rand(min,max){return Math.random()*(max-min)+min}
+
+  function makeParticles(count=80){
+    particles = [];
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: rand(0,w),
+        y: rand(0,h),
+        r: rand(0.7,2.4),
+        vx: rand(-0.15,0.15),
+        vy: rand(-0.02,0.02),
+        alpha: rand(0.05,0.35)
+      });
     }
-    function update(){
-      ctx.clearRect(0,0,W,H);
-      for(const p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x<0) p.x=W; if(p.x>W) p.x=0;
-        if(p.y<0) p.y=H; if(p.y>H) p.y=0;
-        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-      }
-      requestAnimationFrame(update);
+  }
+
+  function draw(){
+    if(!ctx) return;
+    ctx.clearRect(0,0,w,h);
+    // subtle moving radial light
+    const g = ctx.createRadialGradient(w*0.75, h*0.2, 100, w*0.6, h*0.2, Math.max(w,h));
+    g.addColorStop(0, 'rgba(120,90,180,0.06)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,w,h);
+
+    for(let p of particles){
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x < -50) p.x = w + 50;
+      if(p.x > w + 50) p.x = -50;
+      if(p.y < -50) p.y = h + 50;
+      if(p.y > h + 50) p.y = -50;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
     }
-    resize(); window.addEventListener('resize', resize);
-    update();
+    requestAnimationFrame(draw);
+  }
+
+  // tilt effect for cards (mouse)
+  function initTilt(){
+    const interactive = document.querySelectorAll('.interactive[data-tilt]');
+    interactive.forEach(el=>{
+      el.addEventListener('mousemove', e=>{
+        const rect = el.getBoundingClientRect();
+        const dx = (e.clientX - rect.left) / rect.width - 0.5;
+        const dy = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(700px) translateY(-6px) rotateX(${(-dy*6).toFixed(2)}deg) rotateY(${(dx*6).toFixed(2)}deg) scale(1.02)`;
+      });
+      el.addEventListener('mouseleave', ()=> el.style.transform = '');
+    });
+  }
+
+  // reveal on scroll
+  function initReveal(){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.panel-inner, .card, .principle').forEach(el=> io.observe(el));
   }
 
   // CTA pulse
-  const cta = document.getElementById('ctaPrereg');
-  if(cta){
-    setInterval(()=> {
-      cta.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}], {duration:3000, easing:'ease-in-out'});
-    }, 3500);
+  function initCTAPulse(){
+    const cta = document.getElementById('ctaPrereg');
+    if(!cta) return;
+    setInterval(()=> cta.animate([{transform:'scale(1)'},{transform:'scale(.99)'},{transform:'scale(1)'}], {duration:3000, easing:'ease-in-out'}), 3300);
   }
 
-  // Learn button scroll
-  document.getElementById('learnBtn')?.addEventListener('click', () => {
+  // "learn" smooth scroll
+  document.getElementById('learnBtn')?.addEventListener('click', ()=> {
     document.getElementById('about')?.scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(ent=>{
-      if(ent.isIntersecting){ ent.target.classList.add('visible'); ent.target.style.opacity=1; ent.target.style.transform='translateY(0)'; io.unobserve(ent.target); }
+  // secret reveal on hover (for timeline) - subtle: shows only on deliberate hover
+  document.querySelectorAll('.secret .hidden').forEach(el=>{
+    el.addEventListener('mouseenter', ()=> {
+      el.style.color = '#fff';
+      el.style.textShadow = '0 0 10px rgba(122,80,255,0.6)';
     });
-  }, {threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // Tilt effect for cards (simple mousemove)
-  const tiltEls = document.querySelectorAll('[data-tilt]');
-  tiltEls.forEach(el=>{
-    el.addEventListener('mousemove', e=>{
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      const rx = (py - 0.5) * 6; // rotateX
-      const ry = (px - 0.5) * -8; // rotateY
-      el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
-      el.style.boxShadow = `${-ry}px ${rx+6}px 30px rgba(15,10,40,0.25)`;
+    el.addEventListener('mouseleave', ()=> {
+      el.style.color = '#555';
+      el.style.textShadow = 'none';
     });
-    el.addEventListener('mouseleave', ()=>{ el.style.transform='none'; el.style.boxShadow='none'; });
   });
 
-  // small parallax move of ghost with mouse
-  const ghost = document.querySelector('.ghost');
-  window.addEventListener('mousemove', (e)=>{
-    if(!ghost) return;
-    const mx = (e.clientX / window.innerWidth - 0.5) * 20;
-    const my = (e.clientY / window.innerHeight - 0.5) * 10;
-    ghost.style.transform = `translate(calc(-50% + ${mx}px), calc(-50% + ${my}px))`;
+  // init
+  function initAll(){
+    resize();
+    makeParticles(Math.max(60, Math.floor(window.innerWidth/18)));
+    draw();
+    initTilt();
+    initReveal();
+    initCTAPulse();
+  }
+
+  window.addEventListener('resize', ()=> {
+    resize();
+    makeParticles(Math.max(60, Math.floor(window.innerWidth/18)));
   });
-});
+
+  document.addEventListener('DOMContentLoaded', initAll);
+})();

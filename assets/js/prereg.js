@@ -1,48 +1,61 @@
-const form = document.getElementById('preRegForm');
-const msg = document.getElementById('msg');
+/* prereg.js - validation + send to Formspree + success animation */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('preRegForm');
+  const msg = document.getElementById('errorMessage');
+  const success = document.getElementById('success');
 
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const nick = form.nickname.value.trim();
-  const email = form.email.value.trim();
-  const pass = form.password.value;
-
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const passOk = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?]).{6,21}$/.test(pass);
-
-  let error = '';
-  if(!nick || !email || !pass) error = 'Please fill in all fields.';
-  else if(!emailOk) error = 'Enter a valid e-mail.';
-  else if(!passOk) error = 'Password: 6-21 chars, letters, numbers & symbol.';
-
-  if(error){
-    msg.textContent = error;
-    msg.className = 'msg show error';
-    shakeInputs();
-    return;
+  function showError(text){
+    msg.textContent = text;
+    msg.className = 'error-message show error';
+    // small shake on inputs
+    form.querySelectorAll('input').forEach(i => {
+      i.classList.add('shake');
+      setTimeout(()=> i.classList.remove('shake'), 400);
+    });
   }
 
-  try{
-    const res = await fetch(form.action, { method: form.method, body: new FormData(form), headers: { Accept: 'application/json' } });
-    if(res.ok){
-      msg.textContent = 'Registration successful!';
-      msg.className = 'msg show success';
-      form.reset();
-      setTimeout(()=> { window.location.href = 'index.html'; }, 2000);
-    } else {
-      throw 0;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\[\]{};':"\\|,.<>\/?]).{6,21}$/;
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const nick = form.nickname.value.trim();
+    const email = form.email.value.trim();
+    const pass = form.password.value;
+
+    if(!nick || !email || !pass){
+      showError('Please fill in all fields.');
+      return;
     }
-  } catch {
-    msg.textContent = 'Network error. Try again.';
-    msg.className = 'msg show error';
-    shakeInputs();
-  }
-});
+    if(!emailRegex.test(email)){
+      showError('Enter a valid e-mail.');
+      return;
+    }
+    if(!passRegex.test(pass)){
+      showError('Password must be 6-21 chars, include letters, numbers & special symbol.');
+      return;
+    }
 
-function shakeInputs(){
-  const inputs = form.querySelectorAll('input');
-  inputs.forEach(i => {
-    i.classList.add('shake');
-    setTimeout(()=> i.classList.remove('shake'), 420);
+    // send to Formspree
+    try {
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok){
+        form.style.display='none';
+        success.style.display='flex';
+        form.reset();
+        setTimeout(()=> {
+          success.classList.add('fade-out');
+          setTimeout(()=> window.location.href = 'index.html', 900);
+        }, 3000);
+      } else {
+        showError('Something went wrong. Try again.');
+      }
+    } catch (err){
+      showError('Network error. Try again.');
+    }
   });
-}
+});
