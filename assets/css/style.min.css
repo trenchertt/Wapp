@@ -14,8 +14,6 @@ a{color:inherit}
 
 .site-header{position:fixed;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:40;gap:12px}
 .brand{display:flex;gap:12px;align-items:center}
-.brand-logo{width:36px;height:36px;object-fit:contain}
-.badge{background:#fff;color:#111;padding:6px 10px;border-radius:999px;font-weight:700}
 .brand-title{font-weight:700}
 .nav{display:flex;gap:12px;align-items:center}
 .nav-link{opacity:.85;text-decoration:none;padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
