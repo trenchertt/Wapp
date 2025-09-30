@@ -1,58 +1,52 @@
-/* TOKENOMICS WOW BLOCK */
-.token-card {
-  background: radial-gradient(circle at 30% 30%, rgba(154,123,214,0.15), rgba(0,0,0,0.8));
-  border: 1px solid rgba(154,123,214,0.3);
-  border-radius: 20px;
-  padding: 40px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 40px rgba(154,123,214,0.25);
-  transition: transform .3s, box-shadow .3s;
-}
-.token-card:hover {
-  box-shadow: 0 0 60px rgba(154,123,214,0.5);
-}
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:sans-serif;color:#fff;background:#0b0b0b;line-height:1.6;}
 
-.stat-big {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 0 0 20px rgba(154,123,214,0.8);
-}
-.stat-big .label {
-  display: block;
-  font-size: 1rem;
-  margin-top: 6px;
-  color: var(--muted);
-}
+/* Background */
+.bg-wrap{position:fixed;inset:0;overflow:hidden;z-index:-1;}
+.bg-img{width:100%;height:100%;object-fit:cover;filter:brightness(.4);}
+.noise{position:absolute;inset:0;background:url('../images/noise.png');opacity:.05;}
+.ghost{position:absolute;top:30%;left:50%;transform:translateX(-50%);font-size:15vw;font-weight:900;color:rgba(255,255,255,.03);user-select:none;}
+.coming-soon{position:absolute;top:60%;left:50%;transform:translate(-50%,-50%);font-weight:900;font-size:clamp(32px,6vw,96px);color:rgba(255,255,255,.08);letter-spacing:.1em;text-transform:uppercase;animation:glowPulse 5s infinite ease-in-out;}
+@keyframes glowPulse{0%,100%{text-shadow:0 0 15px rgba(154,123,214,.5),0 0 40px rgba(154,123,214,.2);}50%{text-shadow:0 0 30px rgba(154,123,214,.9),0 0 60px rgba(154,123,214,.5);}}
 
-.stat-row {
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  justify-content: center;
-}
-.stat-glow {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(154,123,214,0.3);
-  padding: 10px 18px;
-  border-radius: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  box-shadow: 0 0 15px rgba(154,123,214,0.25);
-  transition: transform .2s, color .2s;
-}
-.stat-glow:hover {
-  transform: scale(1.08);
-  color: #fff;
-  text-shadow: 0 0 10px rgba(154,123,214,0.7);
-}
+/* Header */
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;position:sticky;top:0;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);}
+.brand{display:flex;align-items:center;gap:.5rem;}
+.badge{background:#9a7bd6;color:#000;padding:.2rem .6rem;border-radius:.5rem;font-weight:700;}
+.nav a{margin-left:1rem;color:#fff;text-decoration:none;transition:.3s;}
+.nav a:hover{color:#9a7bd6;}
+.nav-cta{background:#9a7bd6;padding:.5rem 1rem;border-radius:.5rem;font-weight:600;}
 
-.token-desc {
-  margin-top: 28px;
-  font-size: 1rem;
-  color: var(--muted);
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
+/* Hero */
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:70vh;padding:2rem;}
+.hero h1{font-size:clamp(40px,8vw,100px);margin-bottom:.5rem;}
+.hero p{font-size:clamp(16px,2.5vw,22px);opacity:.9;}
+.btn-primary{display:inline-block;margin-top:1.5rem;padding:.75rem 1.5rem;background:#9a7bd6;color:#000;border-radius:.5rem;font-weight:700;text-decoration:none;}
+
+/* Panels */
+.panel{padding:4rem 2rem;text-align:center;}
+.panel.alt{background:rgba(255,255,255,.05);}
+.panel h2{font-size:clamp(28px,5vw,48px);margin-bottom:1rem;}
+.panel p{max-width:800px;margin:0 auto;opacity:.85;}
+
+/* Tokenomics */
+.token-card{max-width:700px;margin:0 auto;background:rgba(0,0,0,.5);padding:2rem;border-radius:1rem;box-shadow:0 0 20px rgba(154,123,214,.2);}
+.token-stats{margin-bottom:1rem;}
+.stat-big{font-size:clamp(24px,5vw,40px);font-weight:700;}
+.stat-row{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;}
+.stat-row span{background:rgba(154,123,214,.15);padding:.3rem .7rem;border-radius:.5rem;}
+
+/* Principles */
+.principles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem;}
+.principles-grid div{background:rgba(255,255,255,.05);padding:1.5rem;border-radius:.8rem;}
+
+/* Footer */
+.site-footer{padding:2rem;text-align:center;background:rgba(0,0,0,.6);margin-top:2rem;}
+.site-footer .links{margin-top:.5rem;}
+.site-footer a{margin:0 .5rem;color:#fff;text-decoration:none;}
+
+/* Responsive */
+@media(max-width:600px){
+  .nav{display:none;}
 }
